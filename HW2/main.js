@@ -9,6 +9,6 @@
         document.getElementById("averageOutput").innerHTML = averageValue;
     })
 
-})
+
 
 
