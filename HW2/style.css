@@ -1,9 +1,10 @@
-body {
-    margin: 50px;
-    font-family: Helvetica, sans-serif;
-    font-size: 150%;
-    background: purple;
+body{
+  font-family: Luminari,fantasy;
+  background-color: lightblue;
+  text-align: center;
 }
-div (
-font-family: Fantasy, sans-serif;
+div{
+
+ height: 100px;
+ text-align: center;
 }
