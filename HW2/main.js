@@ -1,9 +1,5 @@
-document.addEventListener("DOMContentLoaded", function (event) {
 
-    document.getElementById("button1").addEventListener("click", function () {
-
-        document.getElementById("textbox1").value = "success";
-    })
+    
 
     document.getElementById("averageButton").addEventListener("click", function() {
         var val1 = document.getElementById("average1").value;
