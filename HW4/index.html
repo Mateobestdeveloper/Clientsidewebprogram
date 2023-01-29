@@ -1,20 +1,36 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>HW4</title>
-</head>
-<body>
-  <h1> HW4 Radiobuttons</h1>
-  <div>
-    <input type="radio" id="radio1" value="m"> 
+  <head>
+    <title>Calorie Burner</title>
+  </head>
+  <body>
+    <h1>Calorie Burner</h1>
+    <div>
+      <input type="radio" id="sit-up" name="exercise" value="10" onclick="setCalorieValue(this.value)">
+      <label for="sit-up">Sit-up</label>
+    </div>
+    <div>
+      <input type="radio" id="push-up" name="exercise" value="15" onclick="setCalorieValue(this.value)">
+      <label for="push-up">Push-up</label>
+    </div>
+    <div>
+      <input type="radio" id="jump-rope" name="exercise" value="18" onclick="setCalorieValue(this.value)">
+      <label for="jump-rope">Jump Rope</label>
+    </div>
+    <div>    
+      <button id="add-button" onclick="addCalories()">Add</button>
+      <label for="minutes">Minutes:</label>
+      <input type="text" id="minutes" oninput="validateMinutes(this.value)">
+    </div>
+
+    <br> 
+    <button id="most-burnt-button" onclick="mostBurnt()">Most Burnt</button>
+    <label for="result">Result:</label>
+    <input type="text" id="result" readonly>
     <br>
-     <input type ="radio2" id="radio2"value="m"  >
-    <br>
-    <input type = "radio3" id="radio3"value="m">
-<button type="button" id="button1">Square</button></body>
-  <button type="button" id="button2">Cubed</button>
-  <button type="button" id="button3">Average</button>
-  <script src="main.js"> </script>
+    <button id="show-all-button" onclick="showAll()">Show All</button>
+    <label for="logs">Logs:</label>
+    <textarea id="logs" rows="5" readonly></textarea>
+  </body>
+  <script src="script.js"></script>
 </html>
