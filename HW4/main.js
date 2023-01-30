@@ -2,7 +2,7 @@ var selectedExercise;
 var logs = [];
 
 function setCalorieValue(value) {
-  selectedExercise = value;
+  selectedExercise = value; 
 }
 
 function validateMinutes(minutes) {
