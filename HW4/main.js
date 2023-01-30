@@ -1,5 +1,5 @@
-let selectedExercise;
-let logs = [];
+var selectedExercise;
+var logs = [];
 
 function setCalorieValue(value) {
   selectedExercise = value;
@@ -25,59 +25,61 @@ function addCalories() {
   document.getElementById("logs").value = logs.join("\n");
 }
 
-// function mostBurnt() {
-//   if (!logs.length) {
-//     document.getElementById("result").value = "No logs found.";
-//     return;
-//   }
-//   let mostBurnt = 0;
-//   let mostBurntExercise;
-//   logs.forEach(log => {
-//     let calories = parseInt(log.split(" ")[0]) * parseInt(log.split(" ")[4]);
-//     if (calories > mostBurnt) {
-//       mostBurnt = calories;
-//       mostBurntExercise = log.split(" ")[4];
-//     }
-//   });
-//   document.getElementById("result").value = `${mostBurnt} calories burnt in ${mostBurntExercise}.`;
-// }
+ function mostBurnt() {
+   if (!logs.length) {
+     document.getElementById("result").value = "No logs found.";
+     return;
+   }
+   let mostBurnt = 0;
+   let mostBurntExercise;
+   logs.forEach(log => {
+     let calories = parseInt(log.split(" ")[0]) * parseInt(log.split(" ")[4]);
+     if (calories > mostBurnt) {
+       mostBurnt = calories;
+       mostBurntExercise = log.split(" ")[4];
+     }
+   });
+   document.getElementById("result").value = `${mostBurnt} calories burnt in ${mostBurntExercise}.`;
+ }
 
-// function mostBurnt() {
-//   let sitUpsTotal = logs.filter(log => log.includes("Sit Ups")).reduce((acc, log) => acc + log.split(" ")[0], 0);
-//   let pushUpsTotal = logs.filter(log => log.includes("Push Ups")).reduce((acc, log) => acc + log.split(" ")[0], 0);
-//   let jumpRopeTotal = logs.filter(log => log.includes("Jump Rope")).reduce((acc, log) => acc + log.split(" ")[0], 0);
+ function mostBurnt() {
+   let sitUpsTotal = logs.filter(log => log.includes("Sit-Ups")).reduce((acc, log) => acc + log.split(" ")[0], 0);
+   let pushUpsTotal = logs.filter(log => log.includes("Push-Ups")).reduce((acc, log) => acc + log.split(" ")[0], 0);
+   let jumpRopeTotal = logs.filter(log => log.includes("Jump-Rope")).reduce((acc, log) => acc + log.split(" ")[0], 0);
 
-//   let maxCaloriesBurned = Math.max(sitUpsTotal, pushUpsTotal, jumpRopeTotal);
-//   let exercise = "";
+   let maxCaloriesBurned = Math.max(sitUpsTotal, pushUpsTotal, jumpRopeTotal);
+   let exercise = "";
 
-//   if (maxCaloriesBurned === sitUpsTotal) {
-//     exercise = "Sit Ups";
-//   } else if (maxCaloriesBurned === pushUpsTotal) {
-//     exercise = "Push Ups";
-//   } else {
-//     exercise = "Jump Rope";
-//   }
+   if (maxCaloriesBurned === sitUpsTotal) {
+     exercise = "Sit-Ups";
+   } else if (maxCaloriesBurned === pushUpsTotal) {
+     exercise = "Push-Ups";
+   } else {
+     exercise = "Jump-Rope";
+   }
 
-//   document.getElementById("result").value = `Most calories burnt by ${exercise} with ${maxCaloriesBurned} calories`;
-// }
+  document.getElementById("result").value = `Most calories burnt by ${exercise} with ${maxCaloriesBurned} calories`;
+ }
+
+ 
 function mostBurnt() {
-  let sitUpsTotal = 0;
-  let pushUpsTotal = 0;
-  let jumpRopeTotal = 0;
+  var sitUpsTotal = 0;
+  var pushUpsTotal = 0;
+  var jumpRopeTotal = 0;
 
   logs.forEach(log => {
     let logData = log.split(" ");
-    let exercise = logData[1];
+    let exercise = logData[3];
     let minutes = logData[0];
     let calories = 0;
 
-    if (exercise === "Sit Ups") {
+    if (exercise === "Sit-Ups") {
       calories = 10 * minutes;
       sitUpsTotal += calories;
-    } else if (exercise === "Push Ups") {
+    } else if (exercise === "Push-Ups") {
       calories = 15 * minutes;
       pushUpsTotal += calories;
-    } else if (exercise === "Jump Rope") {
+    } else if (exercise === "Jump-Rope") {
       calories = 18 * minutes;
       jumpRopeTotal += calories;
     }
@@ -87,14 +89,15 @@ function mostBurnt() {
   let exercise = "";
 
   if (maxCaloriesBurned === sitUpsTotal) {
-    exercise = "Sit Ups";
+    exercise = "Sit-Ups";
   } else if (maxCaloriesBurned === pushUpsTotal) {
-    exercise = "Push Ups";
+    exercise = "Push-Ups";
   } else {
-    exercise = "Jump Rope";
+    exercise = "Jump-Rope";
   }
 
-  document.getElementById("result").value = `${exercise} ${maxCaloriesBurned} calories burnt.`;
+  document.getElementById("result").value = `${exercise} ${maxCaloriesBurned} calories burnt.`; 
+  
 }
 
 
@@ -103,7 +106,7 @@ function showAll() {
     document.getElementById("result").value = "No logs found.";
     return;
   }
-  let logsList = document.getElementById("logs-list");
+  var logsList = document.getElementById("logs");
   logsList.innerHTML = "";
   logs.forEach(log => {
     let li = document.createElement("li");
