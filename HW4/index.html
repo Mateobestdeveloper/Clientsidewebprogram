@@ -4,21 +4,22 @@
     <title>Calorie Burner</title>
   </head>
   <body>
-    <h1>Calorie Burner</h1> 
+    <h1>Calorie Burner</h1>
+    
     <div>
-      <input type="radio" id="sit-up" name="exercise" value="Sit-Up" onclick="setCalorieValue(this.value)">
+      <input type="radio" id="sit-up" name="exercise" value="10" onclick="setCalorieValue(this.value)">
       <label for="sit-up">Sit-up</label>
     </div>
     <div>
-      <input type="radio" id="push-up" name="exercise" value="Push-Up" onclick="setCalorieValue(this.value)">
+      <input type="radio" id="push-up" name="exercise" value="15" onclick="setCalorieValue(this.value)">
       <label for="push-up">Push-up</label>
     </div>
     <div>
-      <input type="radio" id="jump-rope" name="exercise" value="Jump-Rope" onclick="setCalorieValue(this.value)">
+      <input type="radio" id="jump-rope" name="exercise" value="18" onclick="setCalorieValue(this.value)">
       <label for="jump-rope">Jump Rope</label>
     </div>
     <div>    
-      <button id="add-button" onclick="addCalories()">Add</button>
+      <button id="add-button" onclick="calculateCalories()">Add</button>
       <label for="minutes">Minutes:</label>
       <input type="text" id="minutes" oninput="validateMinutes(this.value)">
     </div>
@@ -30,7 +31,9 @@
     <br>
     <button id="show-all-button" onclick="showAll()">Show All</button>
     <label for="logs">Logs:</label>
-    <textarea id="logs" rows="5" readonly></textarea>
+    <div id="logs">
+      
+    </div>
   </body>
-  <script src="main.js"></script>
+  <script src="script.js"></script>
 </html>
