@@ -35,11 +35,18 @@ let mostBurntExercise = excerciseArray[index];
 document.getElementById("result").value = `${mostBurntExercise} with ${maxCalories} Calories.`
 }
 
+let show = true;
 function showAll() {
-  let list = "<ul>";
-  for (let i = 0; i < results.length; i++) {
-    list += "<li>" + results[i] + "</li>";
-  }
-  list += "</ul>";
-  document.getElementById("logs").innerHTML = list;
+if (show) {
+let list = "<ul>";
+for (let i = 0; i < results.length; i++) {
+list += "<li>" + results[i] + "</li>";
+}
+list += "</ul>";
+document.getElementById("logs").innerHTML = list;
+show = false;
+} else {
+document.getElementById("logs").innerHTML = "";
+show = true;
+}
 }
