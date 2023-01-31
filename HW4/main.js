@@ -1,8 +1,8 @@
-var selectedExercise;
-var logs = [];
+let selectedExercise;
+let logs = [];
 
 function setCalorieValue(value) {
-  selectedExercise = value; 
+  selectedExercise = value;
 }
 
 function validateMinutes(minutes) {
@@ -10,107 +10,36 @@ function validateMinutes(minutes) {
     document.getElementById("minutes").value = "";
   }
 }
+let results = [];
+let caloriesArray = [];
+let excerciseArray = [];
 
-function addCalories() {
+function calculateCalories() {
   let minutes = document.getElementById("minutes").value;
-  if (!selectedExercise || isNaN(minutes) || minutes < 0) {
-    document.getElementById("result").value = "Please select an exercise and enter a valid number of minutes.";
-    return;
-  }
-  let calories = minutes * selectedExercise;
-  let log = `${minutes} minutes of ${selectedExercise} calories burnt.`;
-  logs.push(log);
-  document.getElementById("result").value = log;
-  document.getElementById("minutes").value = "";
-  document.getElementById("logs").value = logs.join("\n");
+  let exercise = document.querySelector('input[name="exercise"]:checked');
+  let exerciseName = exercise.id;
+  excerciseArray.push(exerciseName);
+  let calories = exercise.value * minutes;
+  caloriesArray.push(calories);
+  let result = `Minutes: ${minutes} | Exercise: ${exerciseName} | Calories burnt: ${calories}`;
+  results.push(result);
+  console.log(results);
+  console.log(caloriesArray);
+  console.log(excerciseArray);
 }
 
- function mostBurnt() {
-   if (!logs.length) {
-     document.getElementById("result").value = "No logs found.";
-     return;
-   }
-   let mostBurnt = 0;
-   let mostBurntExercise;
-   logs.forEach(log => {
-     let calories = parseInt(log.split(" ")[0]) * parseInt(log.split(" ")[4]);
-     if (calories > mostBurnt) {
-       mostBurnt = calories;
-       mostBurntExercise = log.split(" ")[4];
-     }
-   });
-   document.getElementById("result").value = `${mostBurnt} calories burnt in ${mostBurntExercise}.`;
- }
-
- function mostBurnt() {
-   let sitUpsTotal = logs.filter(log => log.includes("Sit-Ups")).reduce((acc, log) => acc + log.split(" ")[0], 0);
-   let pushUpsTotal = logs.filter(log => log.includes("Push-Ups")).reduce((acc, log) => acc + log.split(" ")[0], 0);
-   let jumpRopeTotal = logs.filter(log => log.includes("Jump-Rope")).reduce((acc, log) => acc + log.split(" ")[0], 0);
-
-   let maxCaloriesBurned = Math.max(sitUpsTotal, pushUpsTotal, jumpRopeTotal);
-   let exercise = "";
-
-   if (maxCaloriesBurned === sitUpsTotal) {
-     exercise = "Sit-Ups";
-   } else if (maxCaloriesBurned === pushUpsTotal) {
-     exercise = "Push-Ups";
-   } else {
-     exercise = "Jump-Rope";
-   }
-
-  document.getElementById("result").value = `Most calories burnt by ${exercise} with ${maxCaloriesBurned} calories`;
- }
-
- 
 function mostBurnt() {
-  var sitUpsTotal = 0;
-  var pushUpsTotal = 0;
-  var jumpRopeTotal = 0;
-
-  logs.forEach(log => {
-    let logData = log.split(" ");
-    let exercise = logData[3];
-    let minutes = logData[0];
-    let calories = 0;
-
-    if (exercise === "Sit-Ups") {
-      calories = 10 * minutes;
-      sitUpsTotal += calories;
-    } else if (exercise === "Push-Ups") {
-      calories = 15 * minutes;
-      pushUpsTotal += calories;
-    } else if (exercise === "Jump-Rope") {
-      calories = 18 * minutes;
-      jumpRopeTotal += calories;
-    }
-  });
-
-  let maxCaloriesBurned = Math.max(sitUpsTotal, pushUpsTotal, jumpRopeTotal);
-  let exercise = "";
-
-  if (maxCaloriesBurned === sitUpsTotal) {
-    exercise = "Sit-Ups";
-  } else if (maxCaloriesBurned === pushUpsTotal) {
-    exercise = "Push-Ups";
-  } else {
-    exercise = "Jump-Rope";
-  }
-
-  document.getElementById("result").value = `${exercise} ${maxCaloriesBurned} calories burnt.`; 
-  
+let maxCalories = Math.max(...caloriesArray);
+let index = caloriesArray.indexOf(maxCalories);
+let mostBurntExercise = excerciseArray[index];
+document.getElementById("result").value = `${mostBurntExercise} with ${maxCalories} Calories.`
 }
-
 
 function showAll() {
-  if (!logs.length) {
-    document.getElementById("result").value = "No logs found.";
-    return;
+  let list = "<ul>";
+  for (let i = 0; i < results.length; i++) {
+    list += "<li>" + results[i] + "</li>";
   }
-  var logsList = document.getElementById("logs");
-  logsList.innerHTML = "";
-  logs.forEach(log => {
-    let li = document.createElement("li");
-    li.innerText = log;
-    logsList.appendChild(li);
-  });
+  list += "</ul>";
+  document.getElementById("logs").innerHTML = list;
 }
